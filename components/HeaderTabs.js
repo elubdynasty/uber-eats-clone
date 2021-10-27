@@ -6,7 +6,7 @@ export default function HeaderTabs() {
     const [activeTab, setActiveTab] = useState("Delivery")
 
     return (
-      <View style={styles.headercontainer}>
+      <View style={styles.headerContainer}>
         <HeaderButton
           text="Delivery"
           btnColor="black"
@@ -26,21 +26,17 @@ export default function HeaderTabs() {
     );
 }
 
-const HeaderButton = ({
-  text,
-  activeTab,
-  setActiveTab,
-}) => (
+const HeaderButton = ({ text, activeTab, setActiveTab }) => (
   <TouchableOpacity
     style={[
-      styles.headerbackground,
+      styles.headerbackgroundWrapper,
       { backgroundColor: activeTab === text ? "black" : "white" },
     ]}
     onPress={() => setActiveTab(text)}
   >
     <Text
       style={[
-        styles.headertext,
+        styles.headertextWrapper,
         { color: activeTab === text ? "white" : "black" },
       ]}
     >
@@ -51,20 +47,19 @@ const HeaderButton = ({
 
 const styles = StyleSheet.create({
     
-    headercontainer: {
+    headerContainer: {
         flexDirection: "row",
         alignSelf: "center"
     },
 
-    headerbackground: {
-        marginTop: 30,
+    headerbackgroundWrapper: {
         paddingVertical: 6,
         paddingHorizontal: 16,
         borderRadius: 30
         
     },
 
-    headertext: {
+    headertextWrapper: {
         fontSize: 15,
         fontWeight: "bold"
     }

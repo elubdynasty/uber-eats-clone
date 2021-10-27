@@ -1,28 +1,33 @@
 import React from 'react'
 import { View, Text, SafeAreaView, StyleSheet } from 'react-native'
 import HeaderTabs from '../components/HeaderTabs'
+import SearchBar from '../components/SearchBar';
 
 export default function Home() {
     return (
-      <SafeAreaView style={styles.safeareacontainer}>
-        <View style={styles.headertabscontainer}>
+      <SafeAreaView style={styles.safeareaContainer}>
+        <View style={styles.headertabsContainer}>
           <HeaderTabs />
+          <SearchBar searchviewContainer={styles.searchviewContainer} />
+        
         </View>
       </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
-  safeareacontainer: {
+  safeareaContainer: {
     backgroundColor: "#eee",
     flex: 1,
   },
 
-  headertabscontainer: {
+  headertabsContainer: {
     backgroundColor: "white",
-    padding: 15
+    padding: 15,
   },
 
+  searchviewContainer: {
+    marginTop: 15,
+    flexDirection: "row"
+  },
 });
-
-//react native f(x) component
