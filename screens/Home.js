@@ -1,18 +1,24 @@
 import React from 'react'
-import { View, Text, SafeAreaView, StyleSheet } from 'react-native'
+import { View, Text, SafeAreaView, StyleSheet, ScrollView } from 'react-native'
 import Categories from '../components/Categories';
 import HeaderTabs from '../components/HeaderTabs'
 import SearchBar from '../components/SearchBar';
+import RestaurantItem from '../components/RestaurantItem'
 
 export default function Home() {
     return (
       <SafeAreaView style={styles.safeareaContainer}>
+
         <View style={styles.headertabsContainer}>
           <HeaderTabs />
           <SearchBar searchviewContainer={styles.searchviewContainer} />
         </View>
 
-        <Categories />
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <Categories />
+          <RestaurantItem />
+        </ScrollView>
+        
       </SafeAreaView>
     );
 }
