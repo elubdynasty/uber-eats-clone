@@ -35,28 +35,31 @@ export const localRestaurants = [
 const RestaurantItem = () => {
   //when the active is set to 1, it'll avoid flashing
   return (
-    <TouchableOpacity activeOpacity={1} style={{marginBottom: 30}}>
-      <View
-        style={{
-          marginTop: 10,
-          padding: 15,
-          backgroundColor: "white",
-        }}
-      >
-        <RestaurantImage />
-        <RestaurantInfo />
-      </View>
+    <TouchableOpacity activeOpacity={1} style={{ marginBottom: 30 }}>
+      {localRestaurants.map((restaurant, index) => (
+        <View
+          key={index}
+          style={{
+            marginTop: 10,
+            padding: 15,
+            backgroundColor: "white",
+          }}
+        >
+          <RestaurantImage image={restaurant.image_url} />
+          <RestaurantInfo name={restaurant.name} rating={restaurant.rating} />
+        </View>
+      ))}
     </TouchableOpacity>
   );
 }
 
 //subcomponents of RestaurantItem
 
-const RestaurantImage = () => (
+const RestaurantImage = ({image}) => (
   <>
     <Image
       source={{
-        uri: "https://images.squarespace-cdn.com/content/v1/55426312e4b0cf1b9ec75236/1600121675632-RCFZ3XAFB2SEDOGA9VV8/_ES11693.png",
+        uri: image,
       }}
       style={{
         width: "100%",
@@ -70,7 +73,7 @@ const RestaurantImage = () => (
   </>
 );
 
-const RestaurantInfo = () => (
+const RestaurantInfo = ({name, rating}) => (
   <View
     style={{
       flexDirection: "row",
@@ -86,7 +89,7 @@ const RestaurantInfo = () => (
           fontWeight: "bold",
         }}
       >
-        Farmhouse Kitchen Thai Cuisine
+        {name}
       </Text>
 
       <Text
@@ -109,7 +112,7 @@ const RestaurantInfo = () => (
         borderRadius: 15
       }}
     >
-      <Text>4.5</Text>
+      <Text>{rating}</Text>
     </View>
   </View>
 );
