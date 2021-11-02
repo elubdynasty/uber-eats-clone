@@ -32,7 +32,7 @@ export const localRestaurants = [
   }
 ]
 
-const RestaurantItem = () => {
+const RestaurantItems = () => {
   //when the active is set to 1, it'll avoid flashing
   return (
     <TouchableOpacity activeOpacity={1} style={{ marginBottom: 30 }}>
@@ -53,7 +53,7 @@ const RestaurantItem = () => {
   );
 }
 
-//subcomponents of RestaurantItem
+//subcomponents of RestaurantItems
 
 const RestaurantImage = ({image}) => (
   <>
@@ -117,4 +117,4 @@ const RestaurantInfo = ({name, rating}) => (
   </View>
 );
 
-export default RestaurantItem
+export default RestaurantItems
