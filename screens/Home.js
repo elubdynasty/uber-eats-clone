@@ -1,26 +1,53 @@
-import React from 'react'
+import React, {useState, useEffect} from "react";
 import { View, Text, SafeAreaView, StyleSheet, ScrollView } from 'react-native'
+//import { YELP_API_KEY } from "@env";
+
 import Categories from '../components/Categories';
 import HeaderTabs from '../components/HeaderTabs'
 import SearchBar from '../components/SearchBar';
-import RestaurantItems from '../components/RestaurantItems'
+import RestaurantItems, { localRestaurants } from '../components/RestaurantItems'
+
+const YELP_API_KEY = <Your apikey>
+  
 
 export default function Home() {
-    return (
-      <SafeAreaView style={styles.safeareaContainer}>
 
-        <View style={styles.headertabsContainer}>
-          <HeaderTabs />
-          <SearchBar searchviewContainer={styles.searchviewContainer} />
-        </View>
+  const [restaurantData, setrestaurantData] = useState(localRestaurants);
 
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <Categories />
-          <RestaurantItems />
-        </ScrollView>
-        
-      </SafeAreaView>
-    );
+  const getRestaurantsFromYelp = async () => {
+    const yelpUrl = "https://api.yelp.com/v3/businesses/search?term=restaurants&location=94560";
+  
+    const apiOptions = {
+      headers: {
+        Authorization: `Bearer ${YELP_API_KEY}`,
+      },
+    }
+
+    const res = await fetch(yelpUrl, apiOptions);
+    const data = await res.json();
+    return setrestaurantData(data.businesses);
+  }
+
+
+ useEffect(() => {
+  getRestaurantsFromYelp()
+ }, []) 
+
+  return (
+    <SafeAreaView style={styles.safeareaContainer}>
+
+      <View style={styles.headertabsContainer}>
+        <HeaderTabs />
+        <SearchBar searchviewContainer={styles.searchviewContainer} />
+      </View>
+
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Categories />
+        <RestaurantItems restaurantData={restaurantData} />
+      </ScrollView>
+
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({

@@ -32,11 +32,11 @@ export const localRestaurants = [
   }
 ]
 
-const RestaurantItems = () => {
+const RestaurantItems = ({ restaurantData }) => {
   //when the active is set to 1, it'll avoid flashing
   return (
     <TouchableOpacity activeOpacity={1} style={{ marginBottom: 30 }}>
-      {localRestaurants.map((restaurant, index) => (
+      {restaurantData.map((restaurant, index) => (
         <View
           key={index}
           style={{
@@ -51,7 +51,7 @@ const RestaurantItems = () => {
       ))}
     </TouchableOpacity>
   );
-}
+};
 
 //subcomponents of RestaurantItems
 
