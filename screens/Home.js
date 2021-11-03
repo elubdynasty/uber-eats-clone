@@ -1,21 +1,18 @@
 import React, {useState, useEffect} from "react";
 import { View, Text, SafeAreaView, StyleSheet, ScrollView } from 'react-native'
-//import { YELP_API_KEY } from "@env";
+import { YELP_API_KEY } from "@env";
 
 import Categories from '../components/Categories';
 import HeaderTabs from '../components/HeaderTabs'
 import SearchBar from '../components/SearchBar';
-import RestaurantItems, { localRestaurants } from '../components/RestaurantItems'
-
-const YELP_API_KEY = <Your apikey>
-  
+import RestaurantItems, { localRestaurants } from '../components/RestaurantItems'  
 
 export default function Home() {
 
   const [restaurantData, setrestaurantData] = useState(localRestaurants);
 
   const getRestaurantsFromYelp = async () => {
-    const yelpUrl = "https://api.yelp.com/v3/businesses/search?term=restaurants&location=94560";
+    const yelpUrl = "https://api.yelp.com/v3/businesses/search?term=restaurants&location=Milpitas";
   
     const apiOptions = {
       headers: {
