@@ -10,9 +10,11 @@ import RestaurantItems, { localRestaurants } from '../components/RestaurantItems
 export default function Home() {
 
   const [restaurantData, setrestaurantData] = useState(localRestaurants);
+  const [city, setCity] = useState("Union City")
+  const [activeTab, setActiveTab] = useState("Delivery");
 
   const getRestaurantsFromYelp = async () => {
-    const yelpUrl = "https://api.yelp.com/v3/businesses/search?term=restaurants&location=Milpitas";
+    const yelpUrl = `https://api.yelp.com/v3/businesses/search?term=restaurants&location=${city}`;
   
     const apiOptions = {
       headers: {
@@ -28,21 +30,22 @@ export default function Home() {
 
  useEffect(() => {
   getRestaurantsFromYelp()
- }, []) 
+ }, [city]) 
 
   return (
     <SafeAreaView style={styles.safeareaContainer}>
-
       <View style={styles.headertabsContainer}>
         <HeaderTabs />
-        <SearchBar searchviewContainer={styles.searchviewContainer} />
+        <SearchBar
+          searchviewContainer={styles.searchviewContainer}
+          cityHandler={setCity}
+        />
       </View>
 
       <ScrollView showsVerticalScrollIndicator={false}>
         <Categories />
         <RestaurantItems restaurantData={restaurantData} />
       </ScrollView>
-
     </SafeAreaView>
   );
 }
