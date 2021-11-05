@@ -24,18 +24,22 @@ export default function Home() {
 
     const res = await fetch(yelpUrl, apiOptions);
     const data = await res.json();
-    return setrestaurantData(data.businesses);
+    return setrestaurantData(
+      data.businesses.filter(
+        business => business.transactions.includes(activeTab.toLowerCase())
+      )
+    );
   }
 
 
  useEffect(() => {
   getRestaurantsFromYelp()
- }, [city]) 
+ }, [city, activeTab]) 
 
   return (
     <SafeAreaView style={styles.safeareaContainer}>
       <View style={styles.headertabsContainer}>
-        <HeaderTabs />
+        <HeaderTabs activeTab={activeTab} setActiveTab={setActiveTab} />
         <SearchBar
           searchviewContainer={styles.searchviewContainer}
           cityHandler={setCity}
