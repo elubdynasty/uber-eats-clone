@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from "react";
 import { View, Text, SafeAreaView, StyleSheet, ScrollView } from 'react-native'
 import { YELP_API_KEY } from "@env";
+import { Divider } from "react-native-elements/dist/divider/Divider";
 
 import Categories from '../components/Categories';
 import HeaderTabs from '../components/HeaderTabs'
 import SearchBar from '../components/SearchBar';
 import RestaurantItems, { localRestaurants } from '../components/RestaurantItems'  
+import BottomTabs from '../components/BottomTabs'
 
 export default function Home() {
 
@@ -50,6 +52,11 @@ export default function Home() {
         <Categories />
         <RestaurantItems restaurantData={restaurantData} />
       </ScrollView>
+
+      <Divider width={1} />
+
+      <BottomTabs />
+
     </SafeAreaView>
   );
 }
