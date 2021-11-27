@@ -1,17 +1,34 @@
 import React from 'react'
 import { View, Image, Text } from "react-native";
 
-const image =
-  "https://s3-media0.fl.yelpcdn.com/bphoto/cQnjaigCmegkR6DGwEMb2Q/o.jpg";
+const yelpRestaurantInfo = {
+  name: "Pacific PourHouse",
+  image: "https://s3-media0.fl.yelpcdn.com/bphoto/cQnjaigCmegkR6DGwEMb2Q/o.jpg",
+  price: "$$",
+  reviews: "968",
+  rating: 4,
+  categories: [
+    { title: "American" },
+    { title: "Burgers" },
+    { title: "Wings" },
+  ],
+};
 
-const title = 'Pacific PourHouse'
-const description = 'American · Burgers · Wings · $$ · 🎟'
+const {name, image, price, reviews, rating, categories} = yelpRestaurantInfo
+
+const formattedCategories = categories.map((cat) => cat.title).join(" · ")
+
+const description = `${formattedCategories} ${
+  price ? " · " + price : ""
+} · 🎟 · ${rating} ⭐ ${reviews}+`;
+
+
 
 const About = () => {
     return (
       <View>
         <RestaurantImage image={image} />
-        <RestaurantTitle title={title} />
+        <RestaurantName name={name} />
         <RestaurantDescription description={description} />
       </View>
     );
@@ -31,7 +48,7 @@ const RestaurantImage = ({ image }) => (
 
 )
 
-const RestaurantTitle = ({ title }) => (
+const RestaurantName = ({ name }) => (
   
     <Text style={{
         fontSize: 29,
@@ -39,7 +56,7 @@ const RestaurantTitle = ({ title }) => (
         marginTop: 10,
         marginHorizontal: 15
     }}>
-        {title}
+        {name}
     </Text>
   
 );
