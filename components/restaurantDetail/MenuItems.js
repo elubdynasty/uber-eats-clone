@@ -17,7 +17,7 @@ const foods = [
 
     price: "$7.95",
     image:
-      "https://img.i-scmp.com/cdn-cgi/image/fit=contain,width=1098,format=auto/sites/default/files/styles/1200x800/public/d8/images/canvas/2021/03/08/bcb87bba-8350-43fe-9046-9a00bcc0a56c_9abfc6c6.jpg",
+      "https://littlesunnykitchen.com/wp-content/uploads/2020/09/French-Fry-Seasoning-7.jpg",
   },
   {
     title: "Hot Mess Fries",
@@ -68,7 +68,11 @@ const MenuItems = () => {
               <FoodInfo food={menuItem} />
               <FoodImage food={menuItem} />
             </View>
-            <Divider width={0.5} orientation="vertical" />
+            <Divider 
+              width={0.5} 
+              orientation="vertical" 
+              style={{marginHorizontal: 20}} 
+            />
           </View>
         ))}
       </ScrollView>
